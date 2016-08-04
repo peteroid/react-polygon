@@ -65,9 +65,9 @@ var Pentagon = React.createClass({
     var r = size / 2
     var centerAngle = 360 / n
     var points = []
-    for (var i = 0; i < nl i++) {
+    for (var i = 0; i < n; i++) {
       var innerAngle = centerAngle * i
-      var innerAngleRad = toRadian(innerAngle)
+      var innerAngleRad = this.toRadian(innerAngle)
       var cosInnerAngleRad = Math.cos(innerAngleRad)
 
       var tangentAngleRad = innerAngleRad / 2

@@ -1,5 +1,5 @@
 var React = require('react')
-// var Pentagon = require('./Pentagon')
+var Polygon = require('./Polygon')
 
 var Main = React.createClass({
   randomizeRatio: function () {
@@ -25,6 +25,7 @@ var Main = React.createClass({
   render: function () {
     return (
       <div className="main">
+        <Polygon n={7} />
         {/*<section>
           <h1>
             {"ratio={[number]}"}

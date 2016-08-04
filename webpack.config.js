@@ -1,7 +1,7 @@
 var Webpack = require('webpack')
 var _extend = require('util')._extend
 
-var commonConfig = {
+var app = {
   devtool: 'eval',
   module: {
     loaders: [
@@ -12,6 +12,7 @@ var commonConfig = {
       }
     ]
   },
+  entry: {'build/app': './src/index.js'},
   output: {
     path: __dirname,
     filename: "[name].js"
@@ -29,10 +30,10 @@ var dist = {
       }
     ]
   },
-  entry: {'dist/Pentagon': './src/components/Pentagon.js'},
+  entry: {'dist/Polygon': './src/components/Polygon.js'},
   output: {
     libraryTarget: "umd",
-    library: "Pentagon",
+    library: "Polygon",
     path: __dirname,
     filename: "[name].js"
   },
@@ -40,8 +41,6 @@ var dist = {
     react: "react"
   }
 }
-
-var app = _extend({entry: {'build/app': './src/index.js'}}, commonConfig)
 
 module.exports = [dist, app]
 
