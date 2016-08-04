@@ -1,19 +1,19 @@
-# react-pentagon
-A simple react add-on to help drawing the svg pentagon.
+# react-polygon
+A react add-on for drawing polygons for any number of sides, as well as animation
 
 # Demo
-[https://peteroid.github.io/react-pentagon/](https://peteroid.github.io/react-pentagon/)
+[https://peteroid.github.io/react-polygon/](https://peteroid.github.io/react-polygon/)
 
 # Usage
 ```javascript
-npm install react-pentagon --save
+npm install react-polygon --save
 ```
 
 ```javascript
-var Pentagon = require('react-pentagon')
+var Polygon = require('react-polygon')
 
 # add this to your components
-<Pentagon />
+<Polygon />
 ```
 
 
@@ -27,6 +27,7 @@ npm run webpack
 name : propType = defaultValue
 
 ## Basic
+- n : number = 3
 - size : number = 50
 - fill : string = "#ad893e"
 - ratio : [number] = [1, 1, 1, 1, 1]

@@ -1,7 +1,8 @@
 var React = require('react')
 
-var Pentagon = React.createClass({
+var Polygon = React.createClass({
   propTypes: {
+    n: React.PropTypes.number,
     size: React.PropTypes.number,
     fill: React.PropTypes.string,
     ratios: React.PropTypes.arrayOf(React.PropTypes.number),
@@ -109,4 +110,4 @@ var Pentagon = React.createClass({
   }
 })
 
-module.exports = Pentagon
+module.exports = Polygon
