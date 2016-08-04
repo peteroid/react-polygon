@@ -1,5 +1,5 @@
 var React = require('react')
-var Pentagon = require('./Pentagon')
+// var Pentagon = require('./Pentagon')
 
 var Main = React.createClass({
   randomizeRatio: function () {
@@ -25,7 +25,7 @@ var Main = React.createClass({
   render: function () {
     return (
       <div className="main">
-        <section>
+        {/*<section>
           <h1>
             {"ratio={[number]}"}
           </h1>
@@ -57,7 +57,7 @@ var Main = React.createClass({
             {"Rock with your css!"}
           </h1>
           <Pentagon size={100} className="my-pentagon-1" />
-        </section>
+        </section>*/}
       </div>
     )
   }

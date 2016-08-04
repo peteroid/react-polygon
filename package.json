@@ -1,27 +1,27 @@
 {
-  "name": "react-pentagon",
-  "version": "0.0.5",
-  "description": "A simple react add-on to help drawing the svg pentagon.",
-  "main": "./dist/Pentagon.js",
+  "name": "react-polygon",
+  "version": "0.0.1",
+  "description": "A react add-on for drawing polygons for any number of sides, as well as animation",
+  "main": "./dist/Polygon.js",
   "scripts": {
     "webpack": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peteroid/react-pentagon.git"
+    "url": "git+https://github.com/peteroid/react-polygon.git"
   },
   "keywords": [
     "react",
-    "pentagon",
+    "polygon",
     "svg",
     "drawing"
   ],
   "author": "PETEroid",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/peteroid/react-pentagon/issues"
+    "url": "https://github.com/peteroid/react-polygon/issues"
   },
-  "homepage": "https://github.com/peteroid/react-pentagon#readme",
+  "homepage": "https://github.com/peteroid/react-polygon#readme",
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
