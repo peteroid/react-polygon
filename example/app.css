@@ -13,31 +13,37 @@ section {
 }
 
 .main > section > h1 {
-  margin: 20px 0 10px;
+  margin: 20px 0 5px;
   font-weight: lighter;
+}
+
+.main > section > h2 {
+  margin: 5px 0 10px;
+  font-weight: lighter;
+  font-size: 16px;
 }
 
 .container {
   position: relative;
 }
 
-.my-pentagon-1 {
+.my-polygon-1 {
   transition: all 0.5s ease;
 }
 
-.my-pentagon-1 polygon {
+.my-polygon-1 polygon {
   fill: #359E2F;
   transition: all 0.5s ease;
   animation: color-change 3s infinite;
   -webkit-animation: color-change 3s infinite;
 }
 
-.my-pentagon-1:hover {
+.my-polygon-1:hover {
   transform: rotate(360deg) scale(0.5);
   
 }
 
-.my-pentagon-1:hover polygon {
+.my-polygon-1:hover polygon {
   animation: color-change 0.5s infinite;
   -webkit-animation: color-change 0.5s infinite;
 }
@@ -54,7 +60,7 @@ section {
     100%  {fill: #359E2F;}
 }
 
-.my-pentagon-2 {
+.my-polygon-2 {
   position: absolute;
   top: 0;
   left: 50%;
@@ -62,10 +68,10 @@ section {
   -webkit-transform: translateX(-50%);
 }
 
-.my-pentagon-2 polygon {
+.my-polygon-2 polygon {
   transition: all 1s ease;
 }
 
-.my-pentagon-3 {
+.my-polygon-3 {
   opacity: 0.3;
 }

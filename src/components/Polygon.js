@@ -4,7 +4,7 @@ var Pentagon = React.createClass({
   propTypes: {
     size: React.PropTypes.number,
     fill: React.PropTypes.string,
-    ratio: React.PropTypes.arrayOf(React.PropTypes.number),
+    ratios: React.PropTypes.arrayOf(React.PropTypes.number),
     isAnimating: React.PropTypes.bool,
     duration: React.PropTypes.number
   },
@@ -16,13 +16,13 @@ var Pentagon = React.createClass({
       n: 3,
       size: 50,
       fill: "#ad893e",
-      ratio: [1, 1, 1],
+      ratios: [1, 1, 1],
       isAnimating: true,
       duration: 1000
     }
   },
   getInitialState: function () {
-    var points = this.caluatePoints(this.props.n, this.props.size, this.props.ratio)
+    var points = this.caluatePoints(this.props.n, this.props.size, this.props.ratios)
     return {
       newPoints: points,
       oldPoints: points,
@@ -33,7 +33,8 @@ var Pentagon = React.createClass({
     var newPoints = this.caluatePoints(
       nextProps.n || this.props.n,
       nextProps.size || this.props.size,
-      nextProps.ratio || this.props.ratio)
+      nextProps.ratios || this.props.ratios)
+
     var isChanged = false
     for (var i = 0; i < newPoints.length; i++) {
       if (this.state.oldPoints[i][0] != newPoints[i][0] ||
@@ -59,6 +60,11 @@ var Pentagon = React.createClass({
     return deg /180 * Math.PI
   },
   caluatePoints: function (n, size, ratios) {
+    // fix ratios
+    for (var i = ratios.length; i < this.props.n; i++) {
+      ratios.push(1)
+    }
+
     var x = size / 2
     var y = 0
 
@@ -76,50 +82,14 @@ var Pentagon = React.createClass({
 
       var contourSegment = this.getConst.root2 * r * Math.sqrt(1 - cosInnerAngleRad)
       points.push([
-        x + contourSegment * cosTangentAngleRad,
-        y + contourSegment * sinTangentAngleRad
+        (x + contourSegment * cosTangentAngleRad) * ratios[i] + 
+          r * (1 - ratios[i]),
+        (y + contourSegment * sinTangentAngleRad) * ratios[i] + 
+          r * (1 - ratios[i])
       ])
     }
 
     return points
-
-    // var xTan36D = Math.tan(_36R) * x
-    // var xOverCos36D = x / Math.cos(_36R)
-    // var points = [
-    //   {
-    //     x: x,
-    //     y: 0
-    //   },{
-    //     x: x * 2,
-    //     y: xTan36D
-    //   },{
-    //     x: xOverCos36D * (sin18D + 1),
-    //     y: xOverCos36D * cos18D + xTan36D
-    //   },{
-    //     x: xOverCos36D * sin18D,
-    //     y: xOverCos36D * cos18D + xTan36D
-    //   },{
-    //     x: 0,
-    //     y: xTan36D
-    //   }
-    // ]
-
-    // var c = this.caluateMidPoint(x)
-
-    // var returnPoints = points.map((p, index) => {
-    //   return [
-    //     p.x * ratios[index] + c.cx * (1 - ratios[index]),
-    //     p.y * ratios[index] + c.cy * (1 - ratios[index])
-    //   ]
-    // })
-
-    // return returnPoints
-  },
-  caluateMidPoint: function (x) {
-    return {
-      cx: x,
-      cy: x / Math.cos(this.toRadian(36)) / Math.sin(this.toRadian(72)) * Math.sin(this.toRadian(54))
-    }
   },
   render: function() {
     return (

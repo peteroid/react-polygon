@@ -5,16 +5,21 @@ var Main = React.createClass({
   randomizeRatio: function () {
     this.setState({
       ratio: (
-        Array.apply(null, Array(5)).map(function () {
+        Array.apply(null, Array(this.props.n)).map(function () {
           return Math.random()
         })
       )
     })
   },
+  getDefaultProps: function () {
+    return {
+      n: 8
+    }
+  },
   getInitialState: function () {
     return {
-      ratio: [1, 1, 1, 1, 1],
-      duration: 777
+      ratio: [],
+      duration: 1000
     }
   },
   componentDidMount: function () {
@@ -25,40 +30,25 @@ var Main = React.createClass({
   render: function () {
     return (
       <div className="main">
-        <Polygon n={7} />
-        {/*<section>
+        <section>
           <h1>
             {"ratio={[number]}"}
           </h1>
           <div className="container">
-            <Pentagon ratio={this.state.ratio} isAnimating={true} size={150}
-              fill={"#E6B95A"} duration={this.state.duration / 2} className="my-pentagon-2"/>
-            <Pentagon size={150} fill="#A1EDDB" className="my-pentagon-3"/>
+            <Polygon n={this.props.n} ratios={this.state.ratio} size={400} className="my-polygon-2"/>
+            <Polygon n={this.props.n} size={400} className="my-polygon-3"/>
           </div>
-          <label>
-            {"Speed: "}
-            <input type="number" value={this.state.duration}
-              onChange={e => this.setState({duration: e.target.value})} />
-          </label>
-        </section>
-        <section>
-          <h1>
-            {"size={number}"}
-          </h1>
-          <Pentagon size={100} />
-        </section>
-        <section>
-          <h1>
-            {"fill={string}"}
-          </h1>
-          <Pentagon size={75} fill="#3452a2" />
         </section>
         <section>
           <h1>
             {"Rock with your css!"}
           </h1>
-          <Pentagon size={100} className="my-pentagon-1" />
-        </section>*/}
+          <h2>
+            {"n={10}, ratios={[1, 0.4, 1, 0.4, 1, 0.4, 1, 0.4, 1, 0.4]}"}
+          </h2>
+          <Polygon n={10} size={120} ratios={[1, 0.4, 1, 0.4, 1, 0.4, 1, 0.4, 1, 0.4]}
+            className="my-polygon-1" />
+        </section>
       </div>
     )
   }
