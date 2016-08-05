@@ -12,7 +12,7 @@ npm install react-polygon --save
 ```javascript
 var Polygon = require('react-polygon')
 
-# add this to your components
+// add this to your components
 <Polygon />
 ```
 
