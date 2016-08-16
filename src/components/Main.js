@@ -32,7 +32,7 @@ var Main = React.createClass({
       <div className="main">
         <section>
           <h1>
-            {"ratio={[number]}"}
+            {"ratios={[number]}"}
           </h1>
           <div className="container">
             <Polygon n={this.props.n} ratios={this.state.ratio} size={400} className="my-polygon-2"/>
