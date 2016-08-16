@@ -30,7 +30,7 @@ name : propType = defaultValue
 - n : number = 3
 - size : number = 50
 - fill : string = "#ad893e"
-- ratio : [number] = [1, 1, 1, 1, 1]
+- ratios : [number] = [1, 1, 1, 1, 1]
 
 ## Animation
 - isAnimating : bool = true
