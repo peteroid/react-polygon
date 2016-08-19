@@ -1,6 +1,6 @@
 {
   "name": "react-polygon",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A react add-on for drawing polygons for any number of sides, as well as animation",
   "main": "./dist/Polygon.js",
   "scripts": {
@@ -22,12 +22,14 @@
     "url": "https://github.com/peteroid/react-polygon/issues"
   },
   "homepage": "https://github.com/peteroid/react-polygon#readme",
+  "dependencies": {
+    "react": "^15.3.0",
+  },
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015-webpack": "^6.4.2",
     "babel-preset-react": "^6.11.1",
-    "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "webpack": "^1.13.1"
   }
