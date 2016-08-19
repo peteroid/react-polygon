@@ -70,8 +70,15 @@ section {
 
 .my-polygon-2 polygon {
   transition: all 1s ease;
+  fill-opacity: 0.3;
+  stroke: #000;
+  stroke-width: 2px;
 }
 
 .my-polygon-3 {
-  opacity: 0.3;
+}
+
+.my-polygon-3 polygon {
+  fill-opacity: 0.5;
+  fill: #DEDEDE;
 }
