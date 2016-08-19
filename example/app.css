@@ -7,6 +7,14 @@ section {
   position: relative;
 }
 
+svg {
+  overflow: visible;
+}
+
+circle {
+  fill: #4c71ef;
+}
+
 .main > section {
   margin: 40px auto;
   text-align: center;

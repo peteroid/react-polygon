@@ -27,6 +27,11 @@ var Main = React.createClass({
       this.randomizeRatio()
     }.bind(this), this.state.duration)
   },
+  renderPoint: function (point) {
+    return (
+      <circle cx={point[0]} cy={point[1]} r={5} />
+    )
+  },
   render: function () {
     return (
       <div className="main">
@@ -35,9 +40,18 @@ var Main = React.createClass({
             {"ratios={[number]}"}
           </h1>
           <div className="container">
-            <Polygon n={this.props.n} ratios={this.state.ratio} size={400} className="my-polygon-2"/>
-            <Polygon n={this.props.n} size={400} className="my-polygon-3"/>
+            <Polygon n={this.props.n} ratios={this.state.ratio} size={200} className="my-polygon-2"/>
+            <Polygon n={this.props.n} size={200} className="my-polygon-3"/>
           </div>
+        </section>
+        <section>
+          <h1>
+            {"Give it a point ;)"}
+          </h1>
+          <h2>
+            {"renderPoint={func}"}
+          </h2>
+          <Polygon n={5} size={150} renderPoint={this.renderPoint}/>
         </section>
         <section>
           <h1>

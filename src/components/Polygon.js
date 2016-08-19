@@ -7,7 +7,8 @@ var Polygon = React.createClass({
     fill: React.PropTypes.string,
     ratios: React.PropTypes.arrayOf(React.PropTypes.number),
     isAnimating: React.PropTypes.bool,
-    duration: React.PropTypes.number
+    duration: React.PropTypes.number,
+    renderPoint: React.PropTypes.func
   },
   getConst: {
     root2: Math.sqrt(2)
@@ -19,7 +20,9 @@ var Polygon = React.createClass({
       fill: "#ad893e",
       ratios: [1, 1, 1],
       isAnimating: true,
-      duration: 1000
+      duration: 1000,
+      classPrefix: 'r--poly-',
+      renderPoint: null
     }
   },
   getInitialState: function () {
@@ -95,8 +98,9 @@ var Polygon = React.createClass({
   render: function() {
     return (
       <svg width={this.props.size} height={this.props.size} className={this.props.className}>
-        <polygon points={this.state.oldPoints} fill={this.props.fill}>
+        <polygon className={this.props.classPrefix + "polygon" || (this.props.classPrefix + "svg")} points={this.state.oldPoints} fill={this.props.fill}>
           <animate
+            className={this.props.classPrefix + "animate"}
             ref={a => this._animate = a}
             id="polygon-animate"
             attributeName="points" 
@@ -105,6 +109,15 @@ var Polygon = React.createClass({
             dur={this.props.duration * 1.05 + "ms"}
             begin="indefinite" />
         </polygon>
+        {this.props.renderPoint ?
+          this.state.newPoints.map((_, i) => {
+            return (
+              <g className={this.props.classPrefix + "point"} key={i}>
+                {this.props.renderPoint(_, i)}
+              </g>
+            )
+          }) : ""
+        }
       </svg>
     )
   }
