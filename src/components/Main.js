@@ -49,7 +49,6 @@ var Main = React.createClass({
               ratios={this.state.ratio2}
               size={200}
               fill="#0f0"
-              isAnimating={false}
               className="my-polygon-2"/>
             <Polygon n={this.props.n} 
               ratios={this.state.ratio} 
