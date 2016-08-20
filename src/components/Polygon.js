@@ -52,7 +52,6 @@ var Polygon = React.createClass({
     }
     if (isChanged) {
       // init animation
-      console.log(nextProps.ratios)
 
       var steps = this.state.currentPoints.map((point, i) => {
         return point.map((value, j) => {
@@ -60,15 +59,22 @@ var Polygon = React.createClass({
         })
       })
 
-      this.setState({
-        currentTicks: 0,
-        preTimestamp: -1,
-        newPoints: newPoints,
-        oldPoints: this.state.currentPoints,
-        steps: steps
-      }, _ => {
-        requestAnimationFrame(this.animatePolygon)
-      })
+      if (this.props.isAnimating) {
+        this.setState({
+          currentTicks: 0,
+          preTimestamp: -1,
+          newPoints: newPoints,
+          oldPoints: this.state.currentPoints,
+          steps: steps
+        }, _ => {
+          requestAnimationFrame(this.animatePolygon)
+        })
+      } else {
+        this.setState({
+          oldPoints: newPoints,
+          currentPoints: newPoints
+        })
+      }
     }
   },
   animatePolygon: function (timestamp) {
