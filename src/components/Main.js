@@ -2,30 +2,35 @@ var React = require('react')
 var Polygon = require('./Polygon')
 
 var Main = React.createClass({
-  randomizeRatio: function () {
-    this.setState({
-      ratio: (
-        Array.apply(null, Array(this.props.n)).map(function () {
-          return Math.random()
-        })
-      )
-    })
-  },
   getDefaultProps: function () {
     return {
-      n: 8
+      n: 7
     }
   },
   getInitialState: function () {
     return {
       ratio: [],
-      duration: 3000
+      ratio2: [],
+      duration: 3500
     }
   },
   componentDidMount: function () {
     setInterval(function () {
-      this.randomizeRatio()
+      this.setState({
+        ratio: this.getRandomRatios()
+      })
     }.bind(this), this.state.duration)
+
+    setInterval(function () {
+      this.setState({
+        ratio2: this.getRandomRatios()
+      })
+    }.bind(this), this.state.duration / 3 * 2)
+  },
+  getRandomRatios: function () {
+    return Array.apply(null, Array(this.props.n)).map(function () {
+      return Math.random() * 0.7 + 0.3
+    })
   },
   renderPoint: function (point) {
     return (
@@ -40,7 +45,17 @@ var Main = React.createClass({
             {"ratios={[number]}"}
           </h1>
           <div className="container">
-            <Polygon n={this.props.n} ratios={this.state.ratio} size={200} className="my-polygon-2"/>
+            <Polygon n={this.props.n} 
+              ratios={this.state.ratio2}
+              size={200}
+              fill="#0f0"
+              className="my-polygon-2"/>
+            <Polygon n={this.props.n} 
+              ratios={this.state.ratio} 
+              size={200}
+              className="my-polygon-2"
+              fill="#f00"
+              renderPoint={this.renderPoint}/>
             <Polygon n={this.props.n} size={200} className="my-polygon-3"/>
           </div>
         </section>

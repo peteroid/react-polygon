@@ -4,7 +4,8 @@
   "description": "A react add-on for drawing polygons for any number of sides, as well as animation",
   "main": "./dist/Polygon.js",
   "scripts": {
-    "webpack": "./node_modules/.bin/webpack"
+    "webpack": "./node_modules/.bin/webpack",
+    "webpack-w": "./node_modules/.bin/webpack -w"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
   },
   "homepage": "https://github.com/peteroid/react-polygon#readme",
   "dependencies": {
-    "react": "^15.3.0",
+    "react": "^15.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
