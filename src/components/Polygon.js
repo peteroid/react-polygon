@@ -30,7 +30,10 @@ var Polygon = React.createClass({
     return {
       newPoints: points,
       oldPoints: points,
-      polygonAnimate: null
+      currentPoints: points,
+      steps: [],
+      currentTicks: 0,
+      preTimestamp: -1
     }
   },
   componentWillReceiveProps: function(nextProps) {
@@ -48,15 +51,53 @@ var Polygon = React.createClass({
       }
     }
     if (isChanged) {
+      // init animation
+
+      var steps = this.state.currentPoints.map((point, i) => {
+        return point.map((value, j) => {
+          return (newPoints[i][j] - value) / this.props.duration
+        })
+      })
+
+      if (this.props.isAnimating) {
+        this.setState({
+          currentTicks: 0,
+          preTimestamp: -1,
+          newPoints: newPoints,
+          oldPoints: this.state.currentPoints,
+          steps: steps
+        }, _ => {
+          requestAnimationFrame(this.animatePolygon)
+        })
+      } else {
+        this.setState({
+          oldPoints: newPoints,
+          currentPoints: newPoints
+        })
+      }
+    }
+  },
+  animatePolygon: function (timestamp) {
+    if (this.state.currentTicks < this.props.duration) {
+      var nextTicks = (this.state.preTimestamp == -1) ? 0 : (this.state.currentTicks - this.state.preTimestamp + timestamp)
+      var r = Math.min(1, nextTicks / this.props.duration)
+      var currentPoints = this.state.newPoints.map((point, i) => {
+        return point.map((value, j) => {
+          return r * value + (1 - r) * this.state.oldPoints[i][j]
+        })
+      })
+
       this.setState({
-        newPoints: newPoints
-      }, function () {
-        this._animate.beginElement()
-        setTimeout(function () {
-          this.setState({
-            oldPoints: newPoints
-          })
-        }.bind(this), this.props.isAnimating ? this.props.duration : 0)
+        preTimestamp: timestamp,
+        currentTicks: nextTicks,
+        currentPoints: currentPoints
+      }, _ => {
+        requestAnimationFrame(this.animatePolygon)
+      })
+    } else {
+      this.setState({
+        oldPoints: this.state.newPoints,
+        currentPoints: this.state.newPoints
       })
     }
   },
@@ -98,19 +139,13 @@ var Polygon = React.createClass({
   render: function() {
     return (
       <svg width={this.props.size} height={this.props.size} className={this.props.className}>
-        <polygon className={this.props.classPrefix + "polygon" || (this.props.classPrefix + "svg")} points={this.state.oldPoints} fill={this.props.fill}>
-          <animate
-            className={this.props.classPrefix + "animate"}
-            ref={a => this._animate = a}
-            id="polygon-animate"
-            attributeName="points" 
-            from={this.state.oldPoints}
-            to={this.state.newPoints}
-            dur={this.props.duration * 1.05 + "ms"}
-            begin="indefinite" />
+        <polygon
+          className={this.props.classPrefix + "polygon" || (this.props.classPrefix + "svg")}
+          points={this.state.currentPoints}
+          fill={this.props.fill}>
         </polygon>
         {this.props.renderPoint ?
-          this.state.newPoints.map((_, i) => {
+          this.state.currentPoints.map((_, i) => {
             return (
               <g className={this.props.classPrefix + "point"} key={i}>
                 {this.props.renderPoint(_, i)}
