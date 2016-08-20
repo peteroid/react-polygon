@@ -19,7 +19,7 @@ var Main = React.createClass({
   getInitialState: function () {
     return {
       ratio: [],
-      duration: 1000
+      duration: 3000
     }
   },
   componentDidMount: function () {
