@@ -1,4 +1,4 @@
-exports[`test Polygon is rendered properly 1`] = `
+exports[`test Polygon is rendered properly with default props 1`] = `
 <svg
   className={undefined}
   height={50}

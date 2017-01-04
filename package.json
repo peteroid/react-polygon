@@ -4,7 +4,7 @@
   "description": "A react add-on for drawing polygons for any number of sides, as well as animation",
   "main": "./dist/Polygon.js",
   "scripts": {
-    "test": "standard && jest",
+    "test": "standard --verbose | snazzy && jest",
     "webpack": "webpack",
     "webpack-w": "webpack -w"
   },
@@ -50,6 +50,7 @@
     "jest": "^18.1.0",
     "react-dom": "^15.3.0",
     "react-test-renderer": "^15.4.1",
+    "snazzy": "^5.0.0",
     "standard": "^8.6.0",
     "webpack": "^1.13.1"
   }
