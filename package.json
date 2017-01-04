@@ -29,8 +29,15 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "globals": [],
-    "ignore": ["dist", "build"]
+    "globals": [
+      "describe",
+      "it",
+      "requestAnimationFrame"
+    ],
+    "ignore": [
+      "dist",
+      "build"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
@@ -42,6 +49,7 @@
     "jest": "^18.1.0",
     "react-dom": "^15.3.0",
     "react-test-renderer": "^15.4.1",
+    "standard": "^8.6.0",
     "webpack": "^1.13.1"
   }
 }

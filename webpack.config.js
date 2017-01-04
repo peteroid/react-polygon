@@ -1,6 +1,3 @@
-var Webpack = require('webpack')
-var _extend = require('util')._extend
-
 var app = {
   devtool: 'eval',
   module: {
@@ -43,4 +40,3 @@ var dist = {
 }
 
 module.exports = [dist, app]
-

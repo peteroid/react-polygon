@@ -44,8 +44,8 @@ var Polygon = React.createClass({
 
     var isChanged = false
     for (var i = 0; i < newPoints.length; i++) {
-      if (this.state.oldPoints[i][0] != newPoints[i][0] ||
-        this.state.oldPoints[i][1] != newPoints[i][1]) {
+      if (this.state.oldPoints[i][0] !== newPoints[i][0] ||
+        this.state.oldPoints[i][1] !== newPoints[i][1]) {
         isChanged = true
         break
       }
@@ -79,7 +79,7 @@ var Polygon = React.createClass({
   },
   animatePolygon: function (timestamp) {
     if (this.state.currentTicks < this.props.duration) {
-      var nextTicks = (this.state.preTimestamp == -1) ? 0 : (this.state.currentTicks - this.state.preTimestamp + timestamp)
+      var nextTicks = (this.state.preTimestamp === -1) ? 0 : (this.state.currentTicks - this.state.preTimestamp + timestamp)
       var r = Math.min(1, nextTicks / this.props.duration)
       var currentPoints = this.state.newPoints.map((point, i) => {
         return point.map((value, j) => {
@@ -106,7 +106,7 @@ var Polygon = React.createClass({
   },
   caluatePoints: function (n, size, ratios) {
     // fix ratios
-    for (var i = ratios.length; i < this.props.n; i++) {
+    for (var _ = ratios.length; _ < this.props.n; _++) {
       ratios.push(1)
     }
 
@@ -143,8 +143,8 @@ var Polygon = React.createClass({
           className={this.props.classPrefix + 'polygon' || (this.props.classPrefix + 'svg')}
           points={this.state.currentPoints}
           fill={this.props.fill} />
-        {this.props.renderPoint ?
-          this.state.currentPoints.map((_, i) => {
+        {this.props.renderPoint
+          ? this.state.currentPoints.map((_, i) => {
             return (
               <g className={this.props.classPrefix + 'point'} key={i}>
                 {this.props.renderPoint(_, i)}
