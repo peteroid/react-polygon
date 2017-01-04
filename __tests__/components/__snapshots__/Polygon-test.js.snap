@@ -1,0 +1,27 @@
+exports[`test Polygon is rendered properly 1`] = `
+<svg
+  className={undefined}
+  height={50}
+  width={50}>
+  <polygon
+    className="r--poly-polygon"
+    fill="#ad893e"
+    points={
+      Array [
+        Array [
+          25,
+          0,
+        ],
+        Array [
+          46.65063509461097,
+          37.5,
+        ],
+        Array [
+          3.3493649053890415,
+          37.50000000000001,
+        ],
+      ]
+    } />
+  
+</svg>
+`;
