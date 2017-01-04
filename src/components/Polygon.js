@@ -17,7 +17,7 @@ var Polygon = React.createClass({
     return {
       n: 3,
       size: 50,
-      fill: "#ad893e",
+      fill: '#ad893e',
       ratios: [1, 1, 1],
       isAnimating: true,
       duration: 1000,
@@ -36,7 +36,7 @@ var Polygon = React.createClass({
       preTimestamp: -1
     }
   },
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps: function (nextProps) {
     var newPoints = this.caluatePoints(
       nextProps.n || this.props.n,
       nextProps.size || this.props.size,
@@ -102,7 +102,7 @@ var Polygon = React.createClass({
     }
   },
   toRadian: function (deg) {
-    return deg /180 * Math.PI
+    return deg / 180 * Math.PI
   },
   caluatePoints: function (n, size, ratios) {
     // fix ratios
@@ -127,31 +127,30 @@ var Polygon = React.createClass({
 
       var contourSegment = this.getConst.root2 * r * Math.sqrt(1 - cosInnerAngleRad)
       points.push([
-        (x + contourSegment * cosTangentAngleRad) * ratios[i] + 
+        (x + contourSegment * cosTangentAngleRad) * ratios[i] +
           r * (1 - ratios[i]),
-        (y + contourSegment * sinTangentAngleRad) * ratios[i] + 
+        (y + contourSegment * sinTangentAngleRad) * ratios[i] +
           r * (1 - ratios[i])
       ])
     }
 
     return points
   },
-  render: function() {
+  render: function () {
     return (
       <svg width={this.props.size} height={this.props.size} className={this.props.className}>
         <polygon
-          className={this.props.classPrefix + "polygon" || (this.props.classPrefix + "svg")}
+          className={this.props.classPrefix + 'polygon' || (this.props.classPrefix + 'svg')}
           points={this.state.currentPoints}
-          fill={this.props.fill}>
-        </polygon>
+          fill={this.props.fill} />
         {this.props.renderPoint ?
           this.state.currentPoints.map((_, i) => {
             return (
-              <g className={this.props.classPrefix + "point"} key={i}>
+              <g className={this.props.classPrefix + 'point'} key={i}>
                 {this.props.renderPoint(_, i)}
               </g>
             )
-          }) : ""
+          }) : ''
         }
       </svg>
     )

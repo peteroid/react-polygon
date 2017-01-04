@@ -29,7 +29,8 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "globals": []
+    "globals": [],
+    "ignore": ["dist", "build"]
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
