@@ -1,42 +1,22 @@
-var React = require('react')
+import React, { Component } from 'react'
 
-var Polygon = React.createClass({
-  propTypes: {
-    n: React.PropTypes.number,
-    size: React.PropTypes.number,
-    fill: React.PropTypes.string,
-    ratios: React.PropTypes.arrayOf(React.PropTypes.number),
-    isAnimating: React.PropTypes.bool,
-    duration: React.PropTypes.number,
-    renderPoint: React.PropTypes.func
-  },
-  getConst: {
-    root2: Math.sqrt(2)
-  },
-  getDefaultProps: function () {
-    return {
-      n: 3,
-      size: 50,
-      fill: '#ad893e',
-      ratios: [1, 1, 1],
-      isAnimating: true,
-      duration: 1000,
-      classPrefix: 'r--poly-',
-      renderPoint: null
-    }
-  },
-  getInitialState: function () {
-    var points = this.caluatePoints(this.props.n, this.props.size, this.props.ratios)
-    return {
-      newPoints: points,
-      oldPoints: points,
-      currentPoints: points,
+const MATH_SQUARE_ROOT_OF_2 = Math.sqrt(2)
+
+export default class Polygon extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      newPoints: this.caluatePoints(this.props.n, this.props.size, this.props.ratios),
+      oldPoints: this.caluatePoints(this.props.n, this.props.size, this.props.ratios),
+      currentPoints: this.caluatePoints(this.props.n, this.props.size, this.props.ratios),
       steps: [],
       currentTicks: 0,
       preTimestamp: -1
     }
-  },
-  componentWillReceiveProps: function (nextProps) {
+  }
+
+  componentWillReceiveProps = (nextProps) => {
     var newPoints = this.caluatePoints(
       nextProps.n || this.props.n,
       nextProps.size || this.props.size,
@@ -50,6 +30,7 @@ var Polygon = React.createClass({
         break
       }
     }
+
     if (isChanged) {
       // init animation
 
@@ -76,8 +57,9 @@ var Polygon = React.createClass({
         })
       }
     }
-  },
-  animatePolygon: function (timestamp) {
+  }
+
+  animatePolygon = (timestamp) => {
     if (this.state.currentTicks < this.props.duration) {
       var nextTicks = (this.state.preTimestamp === -1) ? 0 : (this.state.currentTicks - this.state.preTimestamp + timestamp)
       var r = Math.min(1, nextTicks / this.props.duration)
@@ -100,13 +82,15 @@ var Polygon = React.createClass({
         currentPoints: this.state.newPoints
       })
     }
-  },
-  toRadian: function (deg) {
+  }
+
+  toRadian (deg) {
     return deg / 180 * Math.PI
-  },
-  caluatePoints: function (n, size, ratios) {
+  }
+
+  caluatePoints (n, size, ratios) {
     // fix ratios
-    for (var _ = ratios.length; _ < this.props.n; _++) {
+    for (var _ = ratios.length; _ < n; _++) {
       ratios.push(1)
     }
 
@@ -125,7 +109,7 @@ var Polygon = React.createClass({
       var sinTangentAngleRad = Math.sin(tangentAngleRad)
       var cosTangentAngleRad = Math.cos(tangentAngleRad)
 
-      var contourSegment = this.getConst.root2 * r * Math.sqrt(1 - cosInnerAngleRad)
+      var contourSegment = MATH_SQUARE_ROOT_OF_2 * r * Math.sqrt(1 - cosInnerAngleRad)
       points.push([
         (x + contourSegment * cosTangentAngleRad) * ratios[i] +
           r * (1 - ratios[i]),
@@ -135,8 +119,9 @@ var Polygon = React.createClass({
     }
 
     return points
-  },
-  render: function () {
+  }
+
+  render () {
     return (
       <svg width={this.props.size} height={this.props.size} className={this.props.className}>
         <polygon
@@ -155,6 +140,25 @@ var Polygon = React.createClass({
       </svg>
     )
   }
-})
+}
 
-module.exports = Polygon
+Polygon.defaultProps = {
+  n: 3,
+  size: 50,
+  fill: '#ad893e',
+  ratios: [1, 1, 1],
+  isAnimating: true,
+  duration: 1000,
+  classPrefix: 'r--poly-',
+  renderPoint: null
+}
+
+Polygon.propTypes = {
+  n: React.PropTypes.number,
+  size: React.PropTypes.number,
+  fill: React.PropTypes.string,
+  ratios: React.PropTypes.arrayOf(React.PropTypes.number),
+  isAnimating: React.PropTypes.bool,
+  duration: React.PropTypes.number,
+  renderPoint: React.PropTypes.func
+}
