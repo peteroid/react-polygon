@@ -32,11 +32,7 @@ test('Polygon is rendered properly with different props', () => {
   const ratioFuncs = [
     n => Array.apply(null, Array(n)).map(i => 1),
     n => Array.apply(null, Array(n)).map(i => 0),
-    n => {
-      Array.apply(null, Array(n)).map(i => {
-        parseInt(Math.sin(i) * 10000) / 10000
-      })
-    }
+    n => Array.apply(null, Array(n)).map((_, i) => Math.abs(Number(Math.sin(i).toFixed(4))))
   ]
 
   let polygons = []
