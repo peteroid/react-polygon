@@ -5,8 +5,5 @@ node_js:
   - "5"
   - "4"
 
-install:
-  - npm install
-
-script:
-  - npm run webpack
+cache:
+  yarn

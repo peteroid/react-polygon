@@ -4,8 +4,9 @@
   "description": "A react add-on for drawing polygons for any number of sides, as well as animation",
   "main": "./dist/Polygon.js",
   "scripts": {
-    "webpack": "./node_modules/.bin/webpack",
-    "webpack-w": "./node_modules/.bin/webpack -w"
+    "test": "standard --verbose | snazzy && jest",
+    "webpack": "webpack",
+    "webpack-w": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -24,14 +25,35 @@
   },
   "homepage": "https://github.com/peteroid/react-polygon#readme",
   "dependencies": {
-    "react": "^15.3.0"
+    "react": "^15.4.1"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "test",
+      "expect",
+      "requestAnimationFrame"
+    ],
+    "ignore": [
+      "dist",
+      "build"
+    ]
   },
   "devDependencies": {
-    "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.4",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "^18.0.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
     "babel-preset-es2015-webpack": "^6.4.2",
-    "babel-preset-react": "^6.11.1",
-    "react-dom": "^15.3.0",
+    "babel-preset-react": "^6.16.0",
+    "jest": "^18.1.0",
+    "react-dom": "^15.4.1",
+    "react-test-renderer": "^15.4.1",
+    "snazzy": "^5.0.0",
+    "standard": "^8.6.0",
     "webpack": "^1.13.1"
   }
 }
