@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 const MATH_SQUARE_ROOT_OF_2 = Math.sqrt(2)
-const MATH_FLOATING_POINT_PRECISION = 11
+const MATH_FLOATING_POINT_PRECISION = 14
 
 export default class Polygon extends Component {
   constructor (props) {
@@ -117,7 +117,7 @@ export default class Polygon extends Component {
       ])
     }
 
-    return points.map(point => point.map(v => Number(v.toFixed(MATH_FLOATING_POINT_PRECISION))))
+    return points.map(point => point.map(v => Number(v.toPrecision(MATH_FLOATING_POINT_PRECISION))))
   }
 
   render () {
