@@ -6,10 +6,12 @@ export default class Polygon extends Component {
   constructor (props) {
     super(props)
 
+    let points = this.caluatePoints(this.props.n, this.props.size, this.props.ratios)
+
     this.state = {
-      newPoints: this.caluatePoints(this.props.n, this.props.size, this.props.ratios),
-      oldPoints: this.caluatePoints(this.props.n, this.props.size, this.props.ratios),
-      currentPoints: this.caluatePoints(this.props.n, this.props.size, this.props.ratios),
+      newPoints: points,
+      oldPoints: points,
+      currentPoints: points,
       steps: [],
       currentTicks: 0,
       preTimestamp: -1
@@ -17,13 +19,13 @@ export default class Polygon extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    var newPoints = this.caluatePoints(
+    let newPoints = this.caluatePoints(
       nextProps.n || this.props.n,
       nextProps.size || this.props.size,
       nextProps.ratios || this.props.ratios)
 
-    var isChanged = false
-    for (var i = 0; i < newPoints.length; i++) {
+    let isChanged = false
+    for (let i = 0; i < newPoints.length; i++) {
       if (this.state.oldPoints[i][0] !== newPoints[i][0] ||
         this.state.oldPoints[i][1] !== newPoints[i][1]) {
         isChanged = true
@@ -33,12 +35,11 @@ export default class Polygon extends Component {
 
     if (isChanged) {
       // init animation
-
-      var steps = this.state.currentPoints.map((point, i) => {
-        return point.map((value, j) => {
-          return (newPoints[i][j] - value) / this.props.duration
-        })
-      })
+      let steps = this.state.currentPoints.map((point, i) =>
+        point.map((value, j) =>
+          (newPoints[i][j] - value) / this.props.duration
+        )
+      )
 
       if (this.props.isAnimating) {
         this.setState({
@@ -46,7 +47,7 @@ export default class Polygon extends Component {
           preTimestamp: -1,
           newPoints: newPoints,
           oldPoints: this.state.currentPoints,
-          steps: steps
+          steps
         }, _ => {
           requestAnimationFrame(this.animatePolygon)
         })
@@ -61,18 +62,18 @@ export default class Polygon extends Component {
 
   animatePolygon = (timestamp) => {
     if (this.state.currentTicks < this.props.duration) {
-      var nextTicks = (this.state.preTimestamp === -1) ? 0 : (this.state.currentTicks - this.state.preTimestamp + timestamp)
-      var r = Math.min(1, nextTicks / this.props.duration)
-      var currentPoints = this.state.newPoints.map((point, i) => {
-        return point.map((value, j) => {
-          return r * value + (1 - r) * this.state.oldPoints[i][j]
-        })
-      })
+      let nextTicks = (this.state.preTimestamp === -1) ? 0 : (this.state.currentTicks - this.state.preTimestamp + timestamp)
+      let r = Math.min(1, nextTicks / this.props.duration)
+      let currentPoints = this.state.newPoints.map((point, i) =>
+        point.map((value, j) =>
+          r * value + (1 - r) * this.state.oldPoints[i][j]
+        )
+      )
 
       this.setState({
         preTimestamp: timestamp,
         currentTicks: nextTicks,
-        currentPoints: currentPoints
+        currentPoints
       }, _ => {
         requestAnimationFrame(this.animatePolygon)
       })
@@ -89,32 +90,29 @@ export default class Polygon extends Component {
   }
 
   caluatePoints (n, size, ratios) {
-    // fix ratios
-    for (var _ = ratios.length; _ < n; _++) {
+    Array.apply(null, Array(Math.max(n - ratios.length, 0))).forEach(_ => {
       ratios.push(1)
-    }
+    })
 
-    var x = size / 2
-    var y = 0
+    let x = size / 2
+    let y = 0
 
-    var r = size / 2
-    var centerAngle = 360 / n
-    var points = []
-    for (var i = 0; i < n; i++) {
-      var innerAngle = centerAngle * i
-      var innerAngleRad = this.toRadian(innerAngle)
-      var cosInnerAngleRad = Math.cos(innerAngleRad)
+    let r = size / 2
+    let centerAngle = 360 / n
+    let points = []
+    for (let i = 0; i < n; i++) {
+      let innerAngle = centerAngle * i
+      let innerAngleRad = this.toRadian(innerAngle)
+      let cosInnerAngleRad = Math.cos(innerAngleRad)
 
-      var tangentAngleRad = innerAngleRad / 2
-      var sinTangentAngleRad = Math.sin(tangentAngleRad)
-      var cosTangentAngleRad = Math.cos(tangentAngleRad)
+      let tangentAngleRad = innerAngleRad / 2
+      let sinTangentAngleRad = Math.sin(tangentAngleRad)
+      let cosTangentAngleRad = Math.cos(tangentAngleRad)
 
-      var contourSegment = MATH_SQUARE_ROOT_OF_2 * r * Math.sqrt(1 - cosInnerAngleRad)
+      let contourSegment = MATH_SQUARE_ROOT_OF_2 * r * Math.sqrt(1 - cosInnerAngleRad)
       points.push([
-        (x + contourSegment * cosTangentAngleRad) * ratios[i] +
-          r * (1 - ratios[i]),
-        (y + contourSegment * sinTangentAngleRad) * ratios[i] +
-          r * (1 - ratios[i])
+        (x + contourSegment * cosTangentAngleRad) * ratios[i] + r * (1 - ratios[i]),
+        (y + contourSegment * sinTangentAngleRad) * ratios[i] + r * (1 - ratios[i])
       ])
     }
 
@@ -129,13 +127,13 @@ export default class Polygon extends Component {
           points={this.state.currentPoints}
           fill={this.props.fill} />
         {this.props.renderPoint
-          ? this.state.currentPoints.map((_, i) => {
-            return (
+          ? this.state.currentPoints.map((_, i) =>
+            (
               <g className={this.props.classPrefix + 'point'} key={i}>
                 {this.props.renderPoint(_, i)}
               </g>
             )
-          }) : ''
+          ) : ''
         }
       </svg>
     )

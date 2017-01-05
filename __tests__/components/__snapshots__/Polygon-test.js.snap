@@ -1,3 +1,51 @@
+exports[`test Polygon is rendered properly with custom points 1`] = `
+<svg
+  className={undefined}
+  height={50}
+  width={50}>
+  <polygon
+    className="r--poly-polygon"
+    fill="#ad893e"
+    points={
+      Array [
+        Array [
+          25,
+          0,
+        ],
+        Array [
+          46.65063509461097,
+          37.5,
+        ],
+        Array [
+          3.3493649053890415,
+          37.50000000000001,
+        ],
+      ]
+    } />
+  <g
+    className="r--poly-point">
+    <circle
+      cx={25}
+      cy={0}
+      r="5" />
+  </g>
+  <g
+    className="r--poly-point">
+    <circle
+      cx={46.65063509461097}
+      cy={37.5}
+      r="5" />
+  </g>
+  <g
+    className="r--poly-point">
+    <circle
+      cx={3.3493649053890415}
+      cy={37.50000000000001}
+      r="5" />
+  </g>
+</svg>
+`;
+
 exports[`test Polygon is rendered properly with default props 1`] = `
 <svg
   className={undefined}

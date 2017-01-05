@@ -1,5 +1,5 @@
-var React = require('react')
-var Polygon = require('./Polygon')
+import React from 'react'
+import Polygon from './Polygon'
 
 var Main = React.createClass({
   getDefaultProps: function () {
