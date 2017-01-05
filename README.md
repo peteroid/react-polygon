@@ -1,3 +1,5 @@
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![Build Status](https://travis-ci.org/peteroid/react-polygon.svg?branch=master)](https://travis-ci.org/peteroid/react-polygon) [![npm version](https://badge.fury.io/js/react-polygon.svg)](https://badge.fury.io/js/react-polygon)
+
 # react-polygon
 A react add-on for drawing polygons for any number of sides, as well as animation
 
@@ -10,7 +12,7 @@ npm install react-polygon --save
 ```
 
 ```javascript
-var Polygon = require('react-polygon')
+import Polygon from 'react-polygon'
 
 // add this to your components
 <Polygon />
@@ -24,7 +26,7 @@ npm run webpack
 ```
 
 # Props
-name : propType = defaultValue
+_name : propType = defaultValue_
 
 ## Basic
 - n : number = 3
@@ -40,19 +42,20 @@ name : propType = defaultValue
 You can render extra elements on each point by passing a function to the props `renderPoint`. Here is an example for rendering a point on each vertice:
 
 ```javascript
-var React = require('react')
-var Polygon = require('react-polygon')
+import React, { Component } from 'react'
+import Polygon from 'react-polygon'
 
-var MyPolygon = React.createClass({
-  renderPoint: function (point) {
+class MyPolygon extends Component {
+  myRenderPoint (point) {
     return (
       <circle cx={point[0]} cy={point[1]} r={5} />
     )
-  },
-  render: function () {
+  }
+  
+  render () {
     return (
-      <Polygon renderPoint={this.renderPoint} />
+      <Polygon renderPoint={this.myRenderPoint} />
     )
   }
-})
+}
 ```
