@@ -13,17 +13,17 @@ export default class Main extends Component {
   }
 
   componentDidMount = () => {
-    setInterval(function () {
+    setInterval(() => {
       this.setState({
         ratio: this.getRandomRatios()
       })
-    }.bind(this), this.state.duration)
+    }, this.state.duration)
 
-    setInterval(function () {
+    setInterval(() => {
       this.setState({
         ratio2: this.getRandomRatios()
       })
-    }.bind(this), this.state.duration / 3 * 2)
+    }, this.state.duration / 3 * 2)
   }
 
   getRandomRatios () {
