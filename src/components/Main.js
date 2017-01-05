@@ -1,20 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Polygon from './Polygon'
 
-var Main = React.createClass({
-  getDefaultProps: function () {
-    return {
-      n: 7
-    }
-  },
-  getInitialState: function () {
-    return {
+export default class Main extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
       ratio: [],
       ratio2: [],
       duration: 3500
     }
-  },
-  componentDidMount: function () {
+  }
+
+  componentDidMount = () => {
     setInterval(function () {
       this.setState({
         ratio: this.getRandomRatios()
@@ -26,24 +24,30 @@ var Main = React.createClass({
         ratio2: this.getRandomRatios()
       })
     }.bind(this), this.state.duration / 3 * 2)
-  },
-  getRandomRatios: function () {
-    return Array.apply(null, Array(this.props.n)).map(function () {
-      return Math.random() * 0.7 + 0.3
-    })
-  },
-  renderPoint: function (point) {
+  }
+
+  getRandomRatios () {
+    return Array.apply(null, Array(this.props.n)).map(() =>
+      Math.random() * 0.7 + 0.3
+    )
+  }
+
+  renderPoint (point) {
     return (
       <circle cx={point[0]} cy={point[1]} r={5} />
     )
-  },
-  render: function () {
+  }
+
+  render () {
     return (
       <div className='main'>
         <section>
           <h1>
-            {'ratios={[number]}'}
+            {'Animating everything !'}
           </h1>
+          <h2>
+            {'ratios={[number]}'}
+          </h2>
           <div className='container'>
             <Polygon n={this.props.n}
               ratios={this.state.ratio2}
@@ -81,6 +85,8 @@ var Main = React.createClass({
       </div>
     )
   }
-})
+}
 
-module.exports = Main
+Main.defaultProps = {
+  n: 7
+}

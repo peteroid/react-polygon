@@ -48,7 +48,7 @@ circle {
 
 .my-polygon-1:hover {
   transform: rotate(360deg) scale(0.5);
-  
+
 }
 
 .my-polygon-1:hover polygon {
@@ -89,4 +89,8 @@ circle {
 .my-polygon-3 polygon {
   fill-opacity: 0.5;
   fill: #DEDEDE;
+}
+
+#footer {
+  text-align: center;
 }
