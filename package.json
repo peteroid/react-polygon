@@ -5,8 +5,9 @@
   "main": "./dist/Polygon.js",
   "scripts": {
     "test": "standard --verbose | snazzy && jest",
-    "webpack": "webpack",
-    "webpack-w": "webpack -w"
+    "wpp": "webpack --mode=production",
+    "wpd": "webpack --mode=development",
+    "wpdw": "yarn wpd -w"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "babel-preset-es2015-webpack": "^6.4.2",
     "babel-preset-react": "^6.16.0",
     "jest": "^23.2.0",
+    "prop-types": "^15.6.2",
     "react-dom": "^16.4.1",
     "react-test-renderer": "^16.4.1",
     "snazzy": "^7.1.1",

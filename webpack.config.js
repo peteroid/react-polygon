@@ -1,7 +1,7 @@
 var app = {
   devtool: 'eval',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -19,7 +19,7 @@ var app = {
 var dist = {
   devtool: 'eval',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
