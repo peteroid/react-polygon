@@ -63,7 +63,7 @@ export default class Main extends Component {
             <Polygon n={this.props.n} size={200} className='my-polygon-3' />
           </div>
           <div>
-            <small className='grey'>Did we mention the hexagon background is also react-polygon?</small>
+            <small className='grey'>Did we mention the background is also react-polygon?</small>
           </div>
         </section>
         <section>
@@ -84,6 +84,9 @@ export default class Main extends Component {
           </h2>
           <Polygon n={10} size={120} ratios={[1, 0.4, 1, 0.4, 1, 0.4, 1, 0.4, 1, 0.4]}
             className='my-polygon-1' />
+          <div>
+            <small className='grey'>Try hover me!</small>
+          </div>
         </section>
       </div>
     )
