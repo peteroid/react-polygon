@@ -21,7 +21,7 @@ test('Polygon is rendered properly with custom points', () => {
     <Polygon {...{renderPoint}} />
   )
 
-  let tree = polygon.toJSON()
+  const tree = polygon.toJSON()
   expect(tree).toMatchSnapshot()
 })
 
@@ -35,14 +35,14 @@ test('Polygon is rendered properly with different props', () => {
     n => Array.apply(null, Array(n)).map((_, i) => Math.abs(Number(Math.sin(i).toFixed(4))))
   ]
 
-  let polygons = []
+  const polygons = []
   sides.forEach(n => sizes.forEach(size => fills.forEach(fill => ratioFuncs.forEach(ratioFunc => {
     polygons.push(renderer.create(
       <Polygon {...{n, size, fill, ratios: ratioFunc(n)}} />
     ))
   }))))
 
-  let trees = polygons.map(p => p.toJSON())
+  const trees = polygons.map(p => p.toJSON())
   trees.forEach(t => {
     expect(t).toMatchSnapshot()
   })
