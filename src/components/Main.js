@@ -8,7 +8,7 @@ export default class Main extends Component {
     this.state = {
       ratio: [],
       ratio2: [],
-      duration: 3500
+      duration: 2000
     }
   }
 

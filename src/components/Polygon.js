@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 const MATH_SQUARE_ROOT_OF_2 = Math.sqrt(2)
 const MATH_FLOATING_POINT_PRECISION = 14
@@ -153,11 +154,11 @@ Polygon.defaultProps = {
 }
 
 Polygon.propTypes = {
-  n: React.PropTypes.number,
-  size: React.PropTypes.number,
-  fill: React.PropTypes.string,
-  ratios: React.PropTypes.arrayOf(React.PropTypes.number),
-  isAnimating: React.PropTypes.bool,
-  duration: React.PropTypes.number,
-  renderPoint: React.PropTypes.func
+  n: PropTypes.number,
+  size: PropTypes.number,
+  fill: PropTypes.string,
+  ratios: PropTypes.arrayOf(PropTypes.number),
+  isAnimating: PropTypes.bool,
+  duration: PropTypes.number,
+  renderPoint: PropTypes.func
 }
