@@ -59,3 +59,6 @@ class MyPolygon extends Component {
   }
 }
 ```
+
+# Credits
+- logo by [Icons8]("https://icons8.com")
