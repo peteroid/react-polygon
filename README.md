@@ -1,6 +1,6 @@
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![Build Status](https://travis-ci.org/peteroid/react-polygon.svg?branch=master)](https://travis-ci.org/peteroid/react-polygon) [![npm version](https://badge.fury.io/js/react-polygon.svg)](https://badge.fury.io/js/react-polygon)
 
-# react-polygon
+# [![react-polygon](https://png.icons8.com/nolan/40/ff723f/polygon.png)](https://peteroid.github.io/react-polygon/) react-polygon
 A react add-on for drawing polygons for any number of sides, as well as animation
 
 # Demo
@@ -51,7 +51,7 @@ class MyPolygon extends Component {
       <circle cx={point[0]} cy={point[1]} r={5} />
     )
   }
-  
+
   render () {
     return (
       <Polygon renderPoint={this.myRenderPoint} />

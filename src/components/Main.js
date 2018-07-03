@@ -62,6 +62,9 @@ export default class Main extends Component {
               renderPoint={this.renderPoint} />
             <Polygon n={this.props.n} size={200} className='my-polygon-3' />
           </div>
+          <div>
+            <small className='grey'>Did we mention the hexagon background is also react-polygon?</small>
+          </div>
         </section>
         <section>
           <h1>

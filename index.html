@@ -6,9 +6,48 @@
   <title>React Polygon Example</title>
   <link rel="stylesheet" href="./example/app.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .v-center {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .s-50 {
+      width: 50px;
+    }
+
+    .grey {
+      color: grey;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    section:nth-child(odd) {
+      background-color: #fff;
+    }
+
+    section:nth-child(even) {
+      background-color: #efefef;
+    }
+  </style>
 </head>
 
-<body>
+<body class="center">
+  <h1>
+    <img class="v-center s-50" src="https://png.icons8.com/nolan/100/ff723f/polygon.png">
+    <span class="v-center">React Polygon</span>
+  </h1>
   <div id="app"></div>
   <div id="footer">
     <a class="github-button" href="https://github.com/peteroid/react-polygon" data-size="large" data-count-href="/peteroid/react-polygon/stargazers"
