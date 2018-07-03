@@ -1,3 +1,6 @@
+const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 var app = {
   devtool: 'eval',
   module: {
@@ -17,7 +20,7 @@ var app = {
 }
 
 var dist = {
-  devtool: 'eval',
+  devtool: 'cheap-source-map',
   module: {
     rules: [
       {
@@ -33,6 +36,16 @@ var dist = {
     library: 'Polygon',
     path: __dirname,
     filename: '[name].js'
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+        }
+      })
+    ]
   },
   externals: {
     react: 'react'
