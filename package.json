@@ -1,6 +1,6 @@
 {
   "name": "react-polygon",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "A react add-on for drawing polygons for any number of sides, as well as animation",
   "main": "./dist/Polygon.js",
   "scripts": {
