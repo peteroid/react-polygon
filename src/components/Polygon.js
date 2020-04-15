@@ -25,6 +25,14 @@ export default class Polygon extends Component {
       nextProps.n || this.props.n,
       nextProps.size || this.props.size,
       nextProps.ratios || this.props.ratios)
+    
+    if(this.state.oldPoints.length == 0 || this.state.oldPoints.length != newPoints.length) {
+      this.setState({
+          oldPoints: newPoints,
+          currentPoints: newPoints
+        })
+        return
+    }
 
     let isChanged = false
     for (let i = 0; i < newPoints.length; i++) {
